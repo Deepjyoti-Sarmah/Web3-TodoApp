@@ -1,22 +1,17 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
 
-// Uncomment this line to use console.log
-// import "hardhat/console.sol";
-
-contract TodoList{
+contract TodoList {
 
     struct TaskItem {
         string task;
         bool isCompleted;
     }
-
-    mapping(uint256 => TaskItem) public tasks;
     uint256 public count = 0;
-
+    mapping (uint256 => TaskItem) public tasks;
     address public owner;
 
-    constructor() {
+    constructor () {
         owner = msg.sender;
     }
 
@@ -25,22 +20,15 @@ contract TodoList{
         _;
     }
 
-    function addTask(string calldata task) public onlyOwner{
-        
-        TaskItem memory item = TaskItem({
-            task : task,
-            isCompleted : false
-        });
-
+    function addTask(string calldata task) public onlyOwner {
+        TaskItem memory item = TaskItem({ task: task, isCompleted: false });
         tasks[count] = item;
         count++;
     }
 
-    function completeTask(uint256 id) public onlyOwner{
-        
+    function completeTask(uint256 id) public onlyOwner {
         require(!tasks[id].isCompleted, "Task already completed");
         tasks[id].isCompleted = true;
     }
-
 
 }
