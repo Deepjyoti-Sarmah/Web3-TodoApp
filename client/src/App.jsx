@@ -1,14 +1,14 @@
 import {useState, useEffect} from "react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount, useContract, useSigner } from 'wagmi'
-import {CONTRACT_ADDRESS} from "./contract.js"
-import {abi} from "./contract/TodoList.json"
+import {CONTRACT_ADDRESS, CONTRACT_ABI} from "./contract.js"
+// import {abi} from "./contract/TodoList.json"
 
 // const CONTRACT_ADDRESS = "0xad802fcd349caadd431fccb7028a374c0b33a2e3";
 
 function App() {
 	const [tasks, setTasks] = useState([]);
-  const [inputTask, setInputTask] = useState(null)
+  	const [inputTask, setInputTask] = useState(null)
 
   // console.log("INPUT ", inputTask)
 
@@ -16,7 +16,7 @@ function App() {
 	const { data: signer } = useSigner();
 	const contract = useContract({
 		address: CONTRACT_ADDRESS,
-		abi: abi.abi,
+		abi: CONTRACT_ABI,
 		signerOrProvider: signer,
 	});
 
