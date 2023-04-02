@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
-require("dotenv").config();
+// require("dotenv").config();
 
 import '@rainbow-me/rainbowkit/styles.css';
 import {
@@ -19,7 +19,7 @@ const { chains, provider } = configureChains(
   [mainnet, goerli, polygon, optimism, arbitrum],
   [//need to fix;
     // alchemyProvider({ apiKey: "bRt5dZAokMQky_h3C6m1hb0hrmQt2Bu2"}),
-    alchemyProvider({apiKey: provider.env.ALCHEMY_ID}),
+    alchemyProvider({apiKey: import.meta.env.ALCHEMY_ID}),
     publicProvider()
   ]
 );
